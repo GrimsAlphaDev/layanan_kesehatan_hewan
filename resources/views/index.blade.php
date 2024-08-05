@@ -82,38 +82,15 @@
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel"
                 data-bs-interval="5000">
 
-                <div class="carousel-item active">
-                    <img src="assets/img/hero-carousel/hero-carousel-1.jpg" alt="">
-                    <div class="container">
-                        <h2>Welcome to Medicio</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a href="#about" class="btn-get-started">Read More</a>
-                    </div>
-                </div><!-- End Carousel Item -->
-
-                <div class="carousel-item">
-                    <img src="assets/img/hero-carousel/hero-carousel-2.jpg" alt="">
-                    <div class="container">
-                        <h2>At vero eos et accusamus</h2>
-                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
-                            quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-                            Temporibus autem quibusdam et aut officiis debitis aut.</p>
-                        <a href="#about" class="btn-get-started">Read More</a>
-                    </div>
-                </div><!-- End Carousel Item -->
-
-                <div class="carousel-item">
-                    <img src="assets/img/hero-carousel/hero-carousel-3.jpg" alt="">
-                    <div class="container">
-                        <h2>Temporibus autem quibusdam</h2>
-                        <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                            aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                            nesciunt omnis iste natus error sit voluptatem accusantium.</p>
-                        <a href="#about" class="btn-get-started">Read More</a>
-                    </div>
-                </div><!-- End Carousel Item -->
+                @foreach ($promosis as $key => $item)
+                    <div class="carousel-item @if ($key == 0) active @endif">
+                        <img src="{{ asset('assets/img/' . $item->img) }}" alt="">
+                        <div class="container">
+                            <h2>{{ $item->judul }}</h2>
+                            <p>{{ $item->deskripsi }}</p>
+                        </div>
+                    </div><!-- End Carousel Item -->
+                @endforeach
 
                 <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
@@ -145,40 +122,15 @@
                         <p style="text-align: justify;">Pencegahan dan pengendalian penyakit menular pada hewan
                             sangat penting untuk menjaga kesehatan hewan ternak maupun hewan peliharaan.</p>
 
-                        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
-                            <i class="fa-solid fa-bacterium flex-shrink-0"></i>
-                            <div>
-                                <h4><a href="" class="stretched-link">Rabies</a></h4>
-                                <p>Cara penularannya adalah melalui gigitan atau cakaran hewan yang terinfeksi</p>
-                            </div>
-                        </div><!-- End Icon Box -->
-
-                        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
-                            <i class="fa-solid fa-bacterium flex-shrink-0"></i>
-                            <div>
-                                <h4><a href="" class="stretched-link">Brucellosis</a></h4>
-                                <p>Cara penularannya adalah kontak langsung dengan cairan tubuh hewan yang
-                                    terinfeksi, konsumsi produk susu yang tidak dipasteurisasi</p>
-                            </div>
-                        </div><!-- End Icon Box -->
-
-                        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="500">
-                            <i class="fa-solid fa-bacterium flex-shrink-0"></i>
-                            <div>
-                                <h4><a href="" class="stretched-link">Leptospirosis</a></h4>
-                                <p>Cara penularannya adalah melalui kontak dengan air atau tanah yang terkontaminasi
-                                    urin hewan yang terinfeksi</p>
-                            </div>
-                        </div><!-- End Icon Box -->
-
-                        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="600">
-                            <i class="fa-solid fa-bacterium flex-shrink-0"></i>
-                            <div>
-                                <h4><a href="" class="stretched-link">Parvovirus</a></h4>
-                                <p>Cara penularannya adalah kontak langsung dengan feses hewan yang terinfeksi atau
-                                    kontak tidak langsung melalui objek yang terkontaminasi</p>
-                            </div>
-                        </div><!-- End Icon Box -->
+                        @foreach ($kriterias as $item)
+                            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+                                <i class="fa-solid fa-bacterium flex-shrink-0"></i>
+                                <div>
+                                    <h4>{{ $item->nama }}</h4>
+                                    <p>Cara penularannya adalah {{ $item->penularan }}</p>
+                                </div>
+                            </div><!-- End Icon Box -->
+                        @endforeach
 
                     </div>
                 </div>
@@ -201,117 +153,32 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <ul class="nav nav-tabs flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active show" data-bs-toggle="tab" href="#tabs-tab-1">Rabies</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-2">Brucellosis</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-3">Leptospirosis</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-4">Parvovirus</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#tabs-tab-5">Feline Leukemia</a>
-                            </li>
+                            @foreach ($kriterias as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($loop->first) active @endif"
+                                        data-bs-toggle="tab"
+                                        href="#tabs-tab-{{ $loop->iteration }}">{{ $item->nama }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-lg-9 mt-4 mt-lg-0">
                         <div class="tab-content">
-                            <div class="tab-pane active show" id="tabs-tab-1">
-                                <div class="row">
-                                    <div class="col-lg-8 details order-2 order-lg-1">
-                                        <h3>Rabies</h3>
-                                        <p style="text-align: justify">Rabies adalah penyakit viral yang sangat
-                                            mematikan, yang menyerang sistem saraf pusat. Penyakit ini biasanya
-                                            ditularkan melalui gigitan atau cakaran hewan yang terinfeksi, seperti
-                                            anjing, kucing, dan kelelawar. Gejala awal meliputi demam, sakit kepala,
-                                            dan kelemahan umum, diikuti oleh gejala neurologis seperti agresivitas,
-                                            hidrofobia (takut air), kejang, dan paralisis. Setelah gejala klinis
-                                            muncul, rabies hampir selalu berakibat fatal. Vaksinasi hewan peliharaan
-                                            adalah cara utama pencegahan.</p>
-                                    </div>
-                                    <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('assets/img/rabies-img.png') }}" alt=""
-                                            class="img-fluid">
+                            @foreach ($kriterias as $item)
+                                <div class="tab-pane fade @if ($loop->first) show active @endif"
+                                    id="tabs-tab-{{ $loop->iteration }}">
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <h3>{{ $item->nama }}</h3>
+                                            <p style="text-align: justify">{{ $item->deskripsi }}</p>
+                                        </div>
+                                        <div class="col-lg-4 text-center order-1 order-lg-2">
+                                            <img src="{{ asset('assets/img/' . $item->img) }}" alt=""
+                                                class="img-fluid">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-tab-2">
-                                <div class="row">
-                                    <div class="col-lg-8 details order-2 order-lg-1">
-                                        <h3>Brucellosis</h3>
-                                        <p style="text-align: justify">Brucellosis adalah infeksi bakteri yang
-                                            dapat menular dari hewan ke manusia, terutama melalui kontak langsung
-                                            dengan cairan tubuh hewan yang terinfeksi atau konsumsi produk susu yang
-                                            tidak dipasteurisasi. Pada hewan, penyakit ini sering menyebabkan
-                                            aborsi, infertilitas, dan penurunan produksi susu. Pada manusia, gejala
-                                            termasuk demam, keringat malam, nyeri sendi, dan kelelahan. Pencegahan
-                                            melibatkan vaksinasi ternak dan praktik kebersihan yang baik.</p>
-                                    </div>
-                                    <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="{{ asset('assets/img/brucellosis.png') }}" alt=""
-                                            class="img-fluid w-100">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-tab-3">
-                                <div class="row">
-                                    <div class="col-lg-8 details order-2 order-lg-1">
-                                        <h3>Hepatology</h3>
-                                        <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem
-                                            non
-                                            enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit
-                                            quaerat
-                                            perferendis aut</p>
-                                        <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis
-                                            quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima
-                                            molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit
-                                            ullam.
-                                            Soluta et harum voluptatem optio quae</p>
-                                    </div>
-                                    <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-tab-4">
-                                <div class="row">
-                                    <div class="col-lg-8 details order-2 order-lg-1">
-                                        <h3>Pediatrics</h3>
-                                        <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure
-                                            voluptas iure porro quis delectus</p>
-                                        <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum
-                                            ipsam
-                                            necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in
-                                            consequatur corporis atque. Eligendi asperiores sed qui veritatis
-                                            aperiam
-                                            quia a laborum inventore</p>
-                                    </div>
-                                    <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="assets/img/departments-4.jpg" alt="" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-tab-5">
-                                <div class="row">
-                                    <div class="col-lg-8 details order-2 order-lg-1">
-                                        <h3>Ophthalmologists</h3>
-                                        <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis
-                                            porro
-                                            quia.</p>
-                                        <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis
-                                            recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui
-                                            quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-4 text-center order-1 order-lg-2">
-                                        <img src="assets/img/departments-5.jpg" alt="" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -375,8 +242,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="500">
+                        <form action="">
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
@@ -399,11 +265,7 @@
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                                    <button type="submit">Send Message</button>
+                                    <button type="submit" id="sendMessage" class="btn btn-primary">Send Message</button>
                                 </div>
 
                             </div>
@@ -445,7 +307,13 @@
     <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
+    <script>
+        const sendMessage = document.getElementById('sendMessage');
+        // if form is validated
+        sendMessage.addEventListener('click', function() {
+            alert('Message has been sent!');
+        });
+    </script>
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 

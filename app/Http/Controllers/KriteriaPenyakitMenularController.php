@@ -5,62 +5,98 @@ namespace App\Http\Controllers;
 use App\Models\KriteriaPenyakitMenular;
 use App\Http\Requests\StoreKriteriaPenyakitMenularRequest;
 use App\Http\Requests\UpdateKriteriaPenyakitMenularRequest;
+use Illuminate\Http\Request;
 
 class KriteriaPenyakitMenularController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+
+        $kriterias = KriteriaPenyakitMenular::all();
+
+        return view('admin.kriteria.index', compact('kriterias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'penularan' => 'required',
+            'deskripsi' => 'required',
+            'img' => 'required',
+        ]);
+
+        // proses img
+        $img = $request->file('img');
+
+        $imgName = time() . '.' . $img->extension();
+
+        $img->move(public_path('assets/img'), $imgName);
+
+        KriteriaPenyakitMenular::create([
+            'nama' => $request->nama,
+            'penularan' => $request->penularan,
+            'deskripsi' => $request->deskripsi,
+            'img' => $imgName,
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Penyakit baru berhasil ditambahkan');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreKriteriaPenyakitMenularRequest $request)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'penularan' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        // if img is not updated
+        if (!$request->file('img')) {
+            $kriteria = KriteriaPenyakitMenular::find($id);
+
+            $kriteria->update([
+                'nama' => $request->nama,
+                'penularan' => $request->penularan,
+                'deskripsi' => $request->deskripsi,
+            ]);
+
+            return redirect()->route('admin.dashboard')->with('success', 'Penyakit berhasil diupdate');
+        }
+
+        // delete old img
+        $kriteria = KriteriaPenyakitMenular::find($id);
+        
+        unlink(public_path('assets/img/' . $kriteria->img));
+
+        // proses img
+        $img = $request->file('img');
+
+        $imgName = time() . '.' . $img->extension();
+
+        $img->move(public_path('assets/img'), $imgName);
+
+        $kriteria->update([
+            'nama' => $request->nama,
+            'penularan' => $request->penularan,
+            'deskripsi' => $request->deskripsi,
+            'img' => $imgName,
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Penyakit berhasil diupdate');
+
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(KriteriaPenyakitMenular $kriteriaPenyakitMenular)
+    public function destroy($id)
     {
-        //
-    }
+        $kriteria = KriteriaPenyakitMenular::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(KriteriaPenyakitMenular $kriteriaPenyakitMenular)
-    {
-        //
-    }
+        unlink(public_path('assets/img/' . $kriteria->img));
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateKriteriaPenyakitMenularRequest $request, KriteriaPenyakitMenular $kriteriaPenyakitMenular)
-    {
-        //
-    }
+        $kriteria->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(KriteriaPenyakitMenular $kriteriaPenyakitMenular)
-    {
-        //
+        return redirect()->route('admin.dashboard')->with('success', 'Penyakit berhasil dihapus');
     }
 }

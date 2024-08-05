@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Faksin;
 use App\Models\User;
 use Illuminate\Support\Str;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -55,7 +56,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Rabies',
                 'deskripsi' => 'Rabies adalah penyakit viral yang sangat mematikan, yang menyerang sistem saraf pusat. Penyakit ini biasanya ditularkan melalui gigitan atau cakaran hewan yang terinfeksi, seperti anjing, kucing, dan kelelawar. Gejala awal meliputi demam, sakit kepala, dan kelemahan umum, diikuti oleh gejala neurologis seperti agresivitas, hidrofobia (takut air), kejang, dan paralisis. Setelah gejala klinis muncul, rabies hampir selalu berakibat fatal. Vaksinasi hewan peliharaan adalah cara utama pencegahan.',
                 'penularan' => 'melalui gigitan atau cakaran hewan yang terinfeksi',
-                'img' => 'rabies-img',
+                'img' => 'rabies-img.png',
             ],
             [
                 'nama' => 'Brucellosis',
@@ -106,7 +107,38 @@ class DatabaseSeeder extends Seeder
             PromosiKesehatanHewan::create($promosi);
         }
 
+        $faksins = [
+            [
+                'kriteria_penyakit_menular_id' => 1,
+                'obat_faksin' => 'Nobivac Rabies',
+                'harga' => '100000',
+                'deskripsi' => 'Nobivac Rabies adalah vaksin inaktif yang digunakan untuk mencegah rabies pada anjing, kucing, dan hewan lainnya. Vaksin ini merangsang tubuh untuk menghasilkan antibodi yang melindungi hewan dari virus rabies'
+            ],
+            [
+                'kriteria_penyakit_menular_id' => 2,
+                'obat_faksin' => 'Nobivac Strain Vaksin RB51',
+                'harga' => '500000',
+                'deskripsi' => 'RB51 adalah vaksin hidup yang dilemahkan yang digunakan untuk mencegah brucellosis pada sapi. Vaksin ini tidak menyebabkan reaksi pada hewan yang divaksinasi dan efektif dalam mengurangi kejadian brucellosis pada ternak'
+            ],
+            [
+                'kriteria_penyakit_menular_id' => 3,
+                'obat_faksin' => 'Nobivac L4',
+                'harga' => '250000',
+                'deskripsi' => 'Nobivac L4 adalah vaksin yang melindungi anjing dari empat jenis bakteri Leptospira (L. interrogans serovar Icterohaemorrhagiae, L. interrogans serovar Canicola, L. kirschneri serovar Grippotyphosa, dan L. interrogans serovar Pomona). Vaksin ini membantu mencegah leptospirosis, yang merupakan penyakit bakteri yang dapat menular ke manusia'
+            ],
+            [
+                'kriteria_penyakit_menular_id' => 4,
+                'obat_faksin' => 'Vanguard Plus CPV',
+                'harga' => '350000',
+                'deskripsi' => 'Vanguard Plus CPV adalah vaksin hidup yang dilemahkan yang digunakan untuk mencegah parvovirus pada anjing. Vaksin ini membantu mencegah penyakit parvovirus yang sangat menular dan seringkali mematikan, terutama pada anak anjing.'
+            ],
+        ];
 
+        foreach ($faksins as $faksin) {
+            Faksin::create($faksin);
+        }
+
+        
 
     }
 }
