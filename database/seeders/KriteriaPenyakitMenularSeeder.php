@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\KriteriaPenyakitMenular;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class KriteriaPenyakitMenularSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class KriteriaPenyakitMenularSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+
     }
 }

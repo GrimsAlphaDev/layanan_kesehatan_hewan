@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('kriteria_penyakit_menulars', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->text('deskripsi');
+            $table->string('penularan');
+            $table->string('img');
             $table->timestamps();
         });
     }

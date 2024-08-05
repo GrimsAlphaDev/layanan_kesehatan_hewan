@@ -66,7 +66,7 @@
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="cta-btn" href="index.html#appointment">Make an Appointment</a>
+                <a class="cta-btn" href="{{ route('login') }}">LOGIN</a>
 
             </div>
 
